@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Food Ninja</title>
+    <title>Dashboard</title>
     <!-- materialize icons, css & js -->
     <link type="text/css" href="./css/materialize.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -64,18 +64,11 @@
           <label for="price">Price</label>
         </div>
         <div class="input-field center">
-          <input type="file" id="fileId" name="editedImg" hidden />
-          <button id="buttonId" class="btn-small">Add Image</button>
-          <script>
-            document.getElementById("buttonId").addEventListener("click", openDialog);
-
-            function openDialog() {
-              document.getElementById("fileId").click();
-            }
-          </script>
+          <input type="file" name="file" id="file" onchange="handleChange(event)" />
+          <button id="button-id" class="btn-small" onclick="uploadHandler(event)" type="button">Add Image</button>
         </div>
         <div class="input-field center">
-          <button class="btn-small">Add</button>
+          <button class="btn-small" id="button-sub" disabled>Add</button>
         </div>
       </form>
     </div>
@@ -90,33 +83,30 @@
           <label for="title">Recipe Title</label>
         </div>
         <div class="input-field">
-          <input placeholder="e.g. Tofu, mushroom, garlic" id="ingredients" type="text" class="validate" />
-          <label for="ingredients">Discription</label>
+          <input placeholder="e.g. Tofu, mushroom, garlic" id="discreption" type="text" class="validate" />
+          <label for="discreption">Discription</label>
         </div>
         <div class="input-field">
           <input placeholder="e.g. Tofu, mushroom, garlic" id="price" type="text" class="validate" />
           <label for="price">Price</label>
         </div>
         <div class="input-field center">
-          <input type="file" id="fileId" name="editedImg" hidden />
-          <button id="buttonId" class="btn-small">Edit Image</button>
-          <script>
-            document.getElementById("buttonId").addEventListener("click", openDialog);
-
-            function openDialog() {
-              document.getElementById("fileId").click();
-            }
-          </script>
+          <input type="file" id="file-id" name="edited-img" onchange="uHandleChange(event)" />
+          <button id="button-id" class="btn-small" onclick="updateHandler(event)">Update Image</button>
         </div>
         <div class="input-field center">
-          <button class="btn-small">Add</button>
+          <button class="btn-small">Edit</button>
         </div>
       </form>
     </div>
+    <script>
+      console.log();
+    </script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->

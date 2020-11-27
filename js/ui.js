@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const renderRecipe = (data, id) => {
   const html = `
       <div class="card-panel recipe white row" data-id ="${id}">
-        <img id="imgUrl" src="./img/dish.png" alt="recipe thumb" />
+        <img id="img-url" src=${data.url} alt="recipe thumb" />
         <div class="recipe-details">
           <div class="recipe-title">${data.title}</div>
           <div class="recipe-discreption">${data.discreption}</div>
@@ -44,7 +44,7 @@ const updateRecipe = (id, updatedData) => {
 
   const html = `
       <div class="card-panel recipe white row" data-id ="${id}">
-        <img src="./img/dish.png" alt="recipe thumb" />
+        <img src="${updatedData.url} alt="recipe thumb" />
         <div class="recipe-details">
           <div class="recipe-title">${updatedData.title}</div>
           <div class="recipe-discreption">${updatedData.discreption}</div>
@@ -54,7 +54,7 @@ const updateRecipe = (id, updatedData) => {
           <i class="material-icons" data-id ="${id}">create</i>
         </div>
         <div class="recipe-delete">
-          <i class="material-icons" data-id ="${id}">delete_outline</i>   
+          <i class="material-icons" data-id ="${id}">delete_outline</i>
         </div>
       </div>
   `;

@@ -64,8 +64,11 @@
           <label for="price">Price</label>
         </div>
         <div class="input-field center">
-          <input type="file" name="file" id="file" onchange="handleChange(event)" />
-          <button id="button-id" class="btn-small" onclick="uploadHandler(event)" type="button">Add Image</button>
+          <input type="file" name="file" class="file" id="file1" onchange="handleChange(event)" />
+          <input type="file" name="file" class="file" id="file2" onchange="handleChange(event)" />
+          <input type="file" name="file" class="file" id="file3" onchange="handleChange(event)" />
+          <input type="file" name="file" class="file" id="file4" onchange="handleChange(event)" />
+          <button id="button-id" class="btn-small" type="button" hidden>Add Images</button>
         </div>
         <div class="input-field center">
           <button class="btn-small" id="button-sub" disabled>Add</button>

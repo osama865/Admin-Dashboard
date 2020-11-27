@@ -4,7 +4,9 @@
   --secondary: #ffe1c4;
   --title: #ff8816;
 }
-
+#file {
+  margin: auto;
+}
 /* layout styles */
 nav {
   background: var(--primary);

@@ -46,11 +46,12 @@ var storageRef = firebase.storage().ref();
 // };
 
 let image = null;
-let url = "";
+let urls = [];
 
 const handleChange = e => {
   if (e.target.files[0]) {
     image = e.target.files[0];
+    uploadHandler(e);
   }
 };
 
@@ -60,7 +61,7 @@ const uploadHandler = evt => {
   uploadTask.on(
     "state_changed",
     snapshot => {
-      const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
       // setProgress(progress);
     },
     error => {
@@ -75,7 +76,10 @@ const uploadHandler = evt => {
           // db.collection("recipes").update({ url: url });
           console.log(backedUrl);
           document.getElementById("button-sub").disabled = false;
-          url = backedUrl;
+          document.getElementsByClassName(".file").disabled = false;
+
+          // url = backedUrl;
+          urls.push(backedUrl);
         });
     }
   );
@@ -111,7 +115,7 @@ form.addEventListener("submit", evt => {
     title: form.title.value,
     discreption: form.discreption.value,
     price: form.price.value,
-    url: url,
+    urls: urls,
   };
 
   db.collection("recipes")

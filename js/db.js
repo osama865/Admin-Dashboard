@@ -14,7 +14,7 @@ db.enablePersistence().catch(err => {
 });
 
 // real time listener
-db.collection("recipes").onSnapshot(function (snapshot) {
+db.collection("cards").onSnapshot(function (snapshot) {
   // console.log(snapshot.docChanges());
   snapshot.docChanges().forEach(function (change) {
     // console.log(change, change.doc.data());
@@ -38,12 +38,6 @@ db.collection("recipes").onSnapshot(function (snapshot) {
 
 var storage = firebase.storage();
 var storageRef = firebase.storage().ref();
-
-// const clickInput = evt => {
-//   evt.preventDefault();
-//   uploadHandler(evt);
-//   document.querySelector("#file").click();
-// };
 
 let image = null;
 let urls = [];
@@ -73,7 +67,7 @@ const uploadHandler = evt => {
         .child(image.name)
         .getDownloadURL()
         .then(backedUrl => {
-          // db.collection("recipes").update({ url: url });
+          // db.collection("cards").update({ url: url });
           console.log(backedUrl);
           document.getElementById("button-sub").disabled = false;
           document.getElementsByClassName(".file").disabled = false;
@@ -84,26 +78,6 @@ const uploadHandler = evt => {
     }
   );
 };
-
-// const clickEdit = evt => {
-//   evt.preventDefault();
-//   document.querySelector("#file").click();
-// };
-// const editHandler = evt => {
-//   evt.preventDefault();
-//   const imgPath = evt.target.files[0];
-//   console.log(imgPath.name);
-//   storageRef
-//     .put(imgPath)
-//     .then(snapshot => {
-//       snapshot.ref.getDownloadURL().then(function (url) {
-//         console.log("File available at", url);
-//         image = url;
-//         db.collection("recipes").add({ url: url });
-//       });
-//     })
-//     .catch(err => {});
-// };
 
 let oldData = {};
 const form = document.querySelector("form");
@@ -118,7 +92,7 @@ form.addEventListener("submit", evt => {
     urls: urls,
   };
 
-  db.collection("recipes")
+  db.collection("cards")
     .add(recipe)
     .catch(err => console.log(err));
 
@@ -130,19 +104,7 @@ form.addEventListener("submit", evt => {
   oldData = recipe;
 });
 
-/*
-  when choce an img put its url inside Image lable
-  put image lable value inside variable image
-  (may i use event listener ?)
-  if variable image is not empty then put its value inside the url imaged iat documents 
-
-
-  and when we get our data put the url inside img src of the card chocen
-*/
-
-// delete recipe
-
-const recipeContainer = document.querySelector(".recipes");
+const recipeContainer = document.querySelector(".cards");
 
 recipeContainer.addEventListener("click", evt => {
   evt.preventDefault();
@@ -150,7 +112,7 @@ recipeContainer.addEventListener("click", evt => {
   if (evt.target.tagName === "I" && evt.target.textContent === "delete_outline") {
     const id = evt.target.getAttribute("data-id");
     console.log(id);
-    db.collection("recipes").doc(id).delete();
+    db.collection("cards").doc(id).delete();
     // console.log("hello");
   }
 });
@@ -182,7 +144,7 @@ const updateHandler = evt => {
         .child(image.name)
         .getDownloadURL()
         .then(backedUrl => {
-          // db.collection("recipes").update({ url: url });
+          // db.collection("cards").update({ url: url });
           console.log(backedUrl);
           document.getElementById("button-sub").disabled = false;
           updatedUrl = backedUrl;
@@ -206,7 +168,7 @@ recipeContainer.addEventListener("click", evt => {
 
     const id = evt.target.getAttribute("data-id");
     console.log(id, evt.target.textContent);
-    var ref = db.collection("recipes").doc(id);
+    var ref = db.collection("cards").doc(id);
     return ref
       .update(editedInfo)
       .then(function () {
@@ -218,17 +180,5 @@ recipeContainer.addEventListener("click", evt => {
         // The document probably doesn't exist.
         console.error(error);
       });
-    // db.collection("recipes")
-    //   .doc(id)
-    //   .update({
-    //     title: "updated title",
-    //   })
-    //   .then(result => {
-    //     console.log(result);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-    // console.log("hello");
   }
 });
